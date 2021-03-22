@@ -27,7 +27,35 @@
  * @TODO Use special page to actually edit [[MediaWiki:MultiBoilerplate]]?
  */
 
-class SpecialBoilerplates extends IncludableSpecialPage {
+namespace MediaWiki\extension\MultiBoilerplate;
+
+
+class SpecialBoilerplates extends \IncludableSpecialPage {
+	public static function getBoilerplatesFromMessage() {
+		$rows = wfMessage( 'Multiboilerplate' )->inContentLanguage()->text();
+		$rows = preg_split( '/\r\n|\r|\n/', $rows );
+		$boilerplates = '';
+
+		foreach ( $rows as $row ) {
+			if ( substr( ltrim( $row ), 0, 1 ) === '*' ) {
+				$row = ltrim( $row, '* ' ); // Remove asterisk & spacing from start of line.
+				$rowParts = explode( '|', $row );
+				if ( !isset( $rowParts[ 1 ] ) ) {
+					return false; // Invalid syntax, abort
+				}
+
+				$rowParts[1] = trim( $rowParts[1] );  // Clean whitespace that might break wikilinks
+
+				// template names might have wikilinks in them to begin with, remove those
+				$rowParts[1] = preg_replace( '/^\[\[/', '', $rowParts[1] );
+				$rowParts[1] = preg_replace( '/\]\]$/', '', $rowParts[1] );
+
+				$boilerplates .= "* [[$rowParts[1]|$rowParts[0]]]\n";
+			}
+		}
+
+		return $boilerplates;
+	}
 
 	function __construct() {
 		parent::__construct( 'Boilerplates' );
@@ -55,28 +83,9 @@ class SpecialBoilerplates extends IncludableSpecialPage {
 			$output->addWikiTextAsInterface( $boilerplates );
 
 		} else {
-			$rows = wfMessage( 'Multiboilerplate' )->inContentLanguage()->text();
-			$rows = preg_split( '/\r\n|\r|\n/', $rows );
+			$boilerplates = self::getBoilerplatesFromMessage();
 
-			foreach ( $rows as $row ) {
-				if ( substr( ltrim( $row ), 0, 1 ) === '*' ) {
-					$row = ltrim( $row, '* ' ); // Remove asterisk & spacing from start of line.
-					$rowParts = explode( '|', $row );
-					if ( !isset( $rowParts[ 1 ] ) ) {
-						return true; // Invalid syntax, abort
-					}
-
-					$rowParts[1] = trim( $rowParts[1] );  // Clean whitespace that might break wikilinks
-
-					// template names might have wikilinks in them to begin with, remove those
-					$rowParts[1] = preg_replace( '/^\[\[/', '', $rowParts[1] );
-					$rowParts[1] = preg_replace( '/\]\]$/', '', $rowParts[1] );
-
-					$boilerplates .= "* [[$rowParts[1]|$rowParts[0]]]\n";
-				}
-			}
-
-			if ( $boilerplates !== '' ) {
+			if ( !empty( $boilerplates ) ) {
 				if ( !$this->mIncluding ) {
 					$output->addWikiMsg( 'multiboilerplate-special-define-in-interface' );
 				}

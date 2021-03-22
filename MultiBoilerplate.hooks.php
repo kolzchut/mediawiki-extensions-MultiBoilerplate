@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Hooks for MultiBoilerplate extension
  *
@@ -26,6 +24,17 @@ use MediaWiki\MediaWikiServices;
  * @TODO de-duplicate code between this and SpecialBoilerplates
  */
 
+namespace MediaWiki\extension\MultiBoilerplate;
+
+use EditPage;
+use Html;
+use MediaWiki\MediaWikiServices;
+use OutputPage;
+use ParserOptions;
+use Title;
+use WikiPage;
+use Xml;
+
 class MultiBoilerplateHooks {
 
 	/**
@@ -43,9 +52,6 @@ class MultiBoilerplateHooks {
 		$parser = MediaWikiServices::getInstance()->getParser();
 		$optionsConfig = $config = $out->getConfig()->get( 'MultiBoilerplateOptions' );
 		$allowContentOverwrite = $out->getConfig()->get( 'MultiBoilerplateOverwrite' );
-
-
-
 
 		// If $wgMultiBoilerplateOverwrite is true then detect whether
 		// the current page exists or not and if it does return true
