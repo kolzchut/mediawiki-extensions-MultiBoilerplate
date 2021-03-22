@@ -14,17 +14,17 @@
 	"requires": {
 		"MediaWiki": ">= 1.32.0"
 	},
-	"callback": "MultiBoilerplateHooks::onRegistration",
+	"callback": "MediaWiki\\extension\\MultiBoilerplate\\MultiBoilerplateHooks::onRegistration",
 	"MessagesDirs": {
 		"MultiBoilerplate": [
 			"i18n"
 		]
 	},
 	"AutoloadClasses": {
-		"MultiBoilerplateHooks": "MultiBoilerplate.hooks.php"
+		"MediaWiki\\extension\\MultiBoilerplate\\MultiBoilerplateHooks": "MultiBoilerplate.hooks.php"
 	},
 	"Hooks": {
-		"EditPage::showEditForm:initial": "MultiBoilerplateHooks::onEditPageShowEditFormInitial"
+		"EditPage::showEditForm:initial": "MediaWiki\\extension\\MultiBoilerplate\\MultiBoilerplateHooks::onEditPageShowEditFormInitial"
 	},
 	"config": {
 		"MultiBoilerplateOptions": null,
