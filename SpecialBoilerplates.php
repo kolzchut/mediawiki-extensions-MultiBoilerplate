@@ -29,7 +29,6 @@
 
 namespace MediaWiki\extension\MultiBoilerplate;
 
-
 class SpecialBoilerplates extends \IncludableSpecialPage {
 	public static function getBoilerplatesFromMessage() {
 		$rows = wfMessage( 'Multiboilerplate' )->inContentLanguage()->text();
