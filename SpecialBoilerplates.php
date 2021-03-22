@@ -35,7 +35,8 @@ class SpecialBoilerplates extends IncludableSpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgMultiBoilerplateOptions;
+		$optionsConfig = $config = $this->getConfig()->get( 'MultiBoilerplateOptions' );
+
 		$output = $this->getOutput();
 		$boilerplates = '';
 
@@ -43,8 +44,8 @@ class SpecialBoilerplates extends IncludableSpecialPage {
 			$this->setHeaders();
 			$output->addWikiMsg( 'multiboilerplate-special-pagetext' );
 		}
-		if ( is_array( $wgMultiBoilerplateOptions ) && !empty( $wgMultiBoilerplateOptions ) ) {
-			foreach ( $wgMultiBoilerplateOptions as $name => $template ) {
+		if ( is_array( $optionsConfig ) && !empty( $optionsConfig ) ) {
+			foreach ( $optionsConfig as $name => $template ) {
 				$boilerplates .= "* [[$template]]\n";
 			}
 
