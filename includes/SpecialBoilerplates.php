@@ -27,9 +27,10 @@
  * @TODO Use special page to actually edit [[MediaWiki:MultiBoilerplate]]?
  */
 
-namespace MediaWiki\extension\MultiBoilerplate;
+namespace MediaWiki\Extension\MultiBoilerplate;
 
 class SpecialBoilerplates extends \IncludableSpecialPage {
+
 	public static function getBoilerplatesFromMessage() {
 		$rows = wfMessage( 'Multiboilerplate' )->inContentLanguage()->text();
 		$rows = preg_split( '/\r\n|\r|\n/', $rows );

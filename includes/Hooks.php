@@ -24,7 +24,7 @@
  * @TODO de-duplicate code between this and SpecialBoilerplates
  */
 
-namespace MediaWiki\extension\MultiBoilerplate;
+namespace MediaWiki\Extension\MultiBoilerplate;
 
 use EditPage;
 use Html;
@@ -35,7 +35,7 @@ use Title;
 use WikiPage;
 use Xml;
 
-class MultiBoilerplateHooks {
+class Hooks {
 
 	/**
 	 * EditPage::showEditForm:initial hook
@@ -168,15 +168,6 @@ class MultiBoilerplateHooks {
 		}
 
 		return true;
-	}
-
-	public static function onRegistration() {
-		global $wgMultiBoilerplateDiplaySpecialPage, $wgAutoloadClasses, $wgExtensionMessagesFiles, $wgSpecialPages;
-		if ( isset( $wgMultiBoilerplateDiplaySpecialPage ) && $wgMultiBoilerplateDiplaySpecialPage === true ) {
-			$wgAutoloadClasses['SpecialBoilerplates'] = __DIR__ . "/SpecialBoilerplates.php";
-			$wgExtensionMessagesFiles['MultiBoilerplateAlias'] = __DIR__ . "/MultiBoilerplate.alias.php";
-			$wgSpecialPages['Boilerplates'] = 'SpecialBoilerplates';
-		}
 	}
 
 }
