@@ -14,22 +14,30 @@
 	"requires": {
 		"MediaWiki": ">= 1.32.0"
 	},
-	"callback": "MediaWiki\\extension\\MultiBoilerplate\\MultiBoilerplateHooks::onRegistration",
 	"MessagesDirs": {
 		"MultiBoilerplate": [
 			"i18n"
 		]
 	},
-	"AutoloadClasses": {
-		"MediaWiki\\extension\\MultiBoilerplate\\MultiBoilerplateHooks": "MultiBoilerplate.hooks.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\MultiBoilerplate\\": "includes/"
+	},
+	"SpecialPages": {
+		"MultiBoilerplates": "MediaWiki\\Extension\\MultiBoilerplate\\SpecialMultiBoilerplates"
+	},
+	"ExtensionMessagesFiles": {
+		"MultiBoilerplateAlias": "MultiBoilerplate.alias.php"
 	},
 	"Hooks": {
-		"EditPage::showEditForm:initial": "MediaWiki\\extension\\MultiBoilerplate\\MultiBoilerplateHooks::onEditPageShowEditFormInitial"
+		"EditPage::showEditForm:initial": "MediaWiki\\extension\\MultiBoilerplate\\Hooks::onEditPageShowEditFormInitial"
 	},
 	"config": {
-		"MultiBoilerplateOptions": null,
-		"MultiBoilerplateOverwrite": false,
-		"MultiBoilerplateDiplaySpecialPage": false
+		"MultiBoilerplateOptions": {
+			"value": null
+		},
+		"MultiBoilerplateOverwrite": {
+			"value": false
+		}
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }

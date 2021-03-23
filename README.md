@@ -2,7 +2,7 @@ MultiBoilerplate extension for MediaWiki
 ========================================
 
 The MultiBoilerplate extension allows a boilerplate to be selected from a drop
-down box located above the edit form. By default this shows only on creation of
+down box located above the edit form. By default, this shows only on creation of
 new pages. When loading a boilerplate, it will completely replace whatever text
 is already in the edit form.
 
@@ -37,14 +37,13 @@ The main configuration is of the available boilerplates; this is done *either*:
 
 
 ### Additional configuration options
-
-* `$wgMultiBoilerplateDiplaySpecialPage`: false by default. if set to true,
-  will add to the wiki a page named `Special:MultiBoilerplates` that shows
-  the currently configured boilerplates.
-
 * `$wgMultiBoilerplateOverwrite`: false by default. If true, shows the
   boilerplates dropdown even on pre-existing page. The selected boilerplate 
   will completed overwrite the current contents.
+
+## Usage
+- Select a boilerplate from a dropdown above the edit form
+- View the configured boilerplates at `Special:MultiBoilerplates`
 
 ## Change log
 See [CHANGELOG.md](CHANGELOG.md) for a complete change log.
