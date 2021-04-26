@@ -1,6 +1,6 @@
 {
 	"name": "MultiBoilerplate",
-	"version": "2.1.2",
+	"version": "2.2.0",
 	"author": [
 		"Robert Leverington",
 		"Al Maghi",
@@ -12,7 +12,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.32.0"
+		"MediaWiki": ">= 1.35.0"
 	},
 	"MessagesDirs": {
 		"MultiBoilerplate": [
@@ -29,7 +29,7 @@
 		"MultiBoilerplateAlias": "MultiBoilerplate.alias.php"
 	},
 	"Hooks": {
-		"EditPage::showEditForm:initial": "MediaWiki\\extension\\MultiBoilerplate\\Hooks::onEditPageShowEditFormInitial"
+		"EditPage::showEditForm:initial": "MediaWiki\\Extension\\MultiBoilerplate\\Hooks::onEditPageShowEditFormInitial"
 	},
 	"config": {
 		"MultiBoilerplateOptions": {
