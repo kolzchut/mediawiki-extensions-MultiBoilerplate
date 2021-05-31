@@ -23,7 +23,7 @@
 		"MediaWiki\\Extension\\MultiBoilerplate\\": "includes/"
 	},
 	"SpecialPages": {
-		"MultiBoilerplates": "MediaWiki\\Extension\\MultiBoilerplate\\SpecialMultiBoilerplates"
+		"MultiBoilerplates": "MediaWiki\\Extension\\MultiBoilerplate\\SpecialBoilerplates"
 	},
 	"ExtensionMessagesFiles": {
 		"MultiBoilerplateAlias": "MultiBoilerplate.alias.php"
