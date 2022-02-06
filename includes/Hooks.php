@@ -49,7 +49,6 @@ class Hooks {
 	public static function onEditPageShowEditFormInitial( EditPage $editPage, OutputPage $out ) {
 		$title = $out->getTitle();
 		$request = $out->getRequest();
-		$parser = MediaWikiServices::getInstance()->getParser();
 		$optionsConfig = $config = $out->getConfig()->get( 'MultiBoilerplateOptions' );
 		$allowContentOverwrite = $out->getConfig()->get( 'MultiBoilerplateOverwrite' );
 
@@ -153,7 +152,7 @@ class Hooks {
 				);
 			} else {
 				$boilerplate   = new WikiPage( $boilerplateTitle );
-				$parser        = $parser->getFreshParser();  // Since MW 1.24
+				$parser = MediaWikiServices::getInstance()->getParser()->getFreshParser(); // Since MW 1.32
 				$parserOptions = $parser->getOptions() === null ?
 							new ParserOptions( $out->getUser() ) :
 							$parser->getOptions();
