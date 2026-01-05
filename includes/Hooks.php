@@ -152,7 +152,7 @@ class Hooks {
 		// If the Load button has been pushed replace the article text with the boilerplate.
 		if ( $request->getText( 'boilerplate', false ) ) {
 			$boilerplateTitle = Title::newFromText( $request->getVal( 'boilerplate' ) );
-			if ( !$boilerplateTitle->exists() ) {
+			if ( !$boilerplateTitle?->exists() ) {
 				$out->addHTML( Html::element(
 					'strong',
 					[ 'class' => 'error' ],
